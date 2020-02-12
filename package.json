@@ -1,0 +1,23 @@
+{
+  "name": "bc-day22-mini",
+  "version": "1.0.0",
+  "description": "Boot Camp Day 22 Activity - Student Mini-Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/preyx/bc-day22-mini.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/preyx/bc-day22-mini/issues"
+  },
+  "homepage": "https://github.com/preyx/bc-day22-mini#readme",
+  "dependencies": {
+    "inquirer": "^7.0.4"
+  }
+}
