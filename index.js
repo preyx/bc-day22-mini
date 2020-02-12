@@ -28,9 +28,43 @@ inquirer.prompt([
   message: 'Enter your GitHub username'
 }])
 .then(({name, location, bio, linkedIn, gitHub}) => {
-  fs.appendFile('test.txt', `${name}`, e => e ? console.log(e) : null)
-  fs.appendFile('test.txt', `, ${location}`, e => e ? console.log(e) : null)
-  fs.appendFile('test.txt', `, ${bio}`, e => e ? console.log(e) : null)
-  fs.appendFile('test.txt', `, ${linkedIn}`, e => e ? console.log(e) : null)
-  fs.appendFile('test.txt', `, ${gitHub}`, e => e ? console.log(e) : null)
+  generateHTML(name, location, bio, linkedIn, gitHub)
 })
+
+const generateHTML = (name, location, bio, linkedIn, gitHub) =>{
+  fs.writeFile('index.html', `
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${name}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/css/uikit.min.css" />
+</head>
+
+<body>
+  <div class="uk-container">
+    <div class="uk-heading-medium uk-heading-divider">${name}</div>
+    <div class="uk-child-width-expand@s" uk-grid>
+      <div>
+        <div>
+          <p>${bio}</p>
+        </div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">
+          <p>${location}</p>
+          <a href = '${linkedIn}'>Link to my LinkedIn Profile!</a>
+          <br>
+          <a href ='https://www.github.com/${gitHub}'>Link to my GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
+  `, error => error ? console.error(error) : console.log('success'))
+}
